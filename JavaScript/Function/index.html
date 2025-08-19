@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+
+<body class="container mx-auto p-lg-5 p-3 shadow mt-lg-5 mt-3 rounded-5 col-lg-5">
+    <!-- Circle -->
+    <h1 class="text-decoration-underline text-center">Area of a Circle</h1>
+    <input type="number" placeholder="Radius of a Circle...." id="circle" class="form-control shadow-none form-control-sm w-100 my-3">
+    <button onclick="calculate()" class="btn btn-dark w-100 my-2">Calculate</button>
+    <p id="show"></p>
+    <!-- <p id="circleDisplay">The answer will display here.....</p> -->
+
+    <hr>
+
+    <!-- Triangle -->
+    <h1 class="text-decoration-underline text-center">Area of a Triangle</h1>
+    <input type="number" placeholder="Base of a Triangle...." id="baseOfATriangle" class="form-control shadow-none form-control-sm w-100 my-3">
+    <input type="number" placeholder="Height of a Triangle...." id="heightOfATriangle" class="form-control shadow-none form-control-sm w-100 my-3">
+    <button onclick="calculateTriangle()" class="btn btn-dark w-100 my-2">Calculate</button>
+    <p id="showTriangle"></p>
+
+    <hr>
+
+    <!-- Square -->
+    <h1 class="text-decoration-underline text-center">Area of a Square</h1>
+    <input type="number" placeholder="Side of the Square?....." id="sideOfASquare" class="form-control shadow-none form-control-sm w-100 my-3">
+    <button onclick="calculateSquare()" class="btn btn-dark w-100 my-2">Calculate</button>
+    <p id="showSquare"></p>
+
+    <hr>
+
+    <!-- Parallelogram -->
+    <h1 class="text-decoration-underline text-center">Area of a Parallelogram</h1>
+    <input type="number" placeholder="Base of a Parallelogram...." id="baseOfAParallelogram" class="form-control shadow-none form-control-sm w-100 my-3">
+    <input type="number" placeholder="Height of a Parallelogram...." id="heightOfAParallelogram" class="form-control shadow-none form-control-sm w-100 my-3">
+    <button onclick="calculateParallelogram()" class="btn btn-dark w-100 my-2">Calculate</button>
+    <p id="showParallelogram"></p>
+
+    <hr>
+
+    <!-- BMI -->
+    <h1 class="text-decoration-underline text-center">The Body Mass Index(BMI)</h1>
+    <input type="number" placeholder="Input your weight...." id="bmiWei" class="form-control shadow-none form-control-sm w-100 my-3">
+    <input type="number" placeholder="Input your height...." id="bmiHeight" class="form-control shadow-none form-control-sm w-100 my-3">
+    <button onclick="calculateBMI()" class="btn btn-dark w-100 my-2">Calculate</button>
+    <p id="showBMI"></p>
+
+    <hr>
+
+    <!-- Trapezium -->
+    <h1 class="text-decoration-underline text-center">The Area of a Trapezium</h1>
+    <input type="number" placeholder="Input the first base of the Trapezium...." id="base1" class="form-control shadow-none form-control-sm w-100 my-3">
+    <input type="number" placeholder="Input the second base of the Trapezium...." id="base2" class="form-control shadow-none form-control-sm w-100 my-3">
+    <input type="number" placeholder="Input the height of the Trapezium...." id="he" class="form-control shadow-none form-control-sm w-100 my-3">
+    <button onclick="calculateTrapezium()" class="btn btn-dark w-100 my-2">Calculate</button>
+    <p id="showTrapezium"></p>
+
+    <hr>
+
+    <!-- Rhombus -->
+    <h1 class="text-decoration-underline text-center">The Area of a Rhombus</h1>
+    <input type="number" placeholder="Input the first base of the Rhombus...." id="diagonal1" class="form-control shadow-none form-control-sm w-100 my-3">
+    <input type="number" placeholder="Input the second base of the Rhombus...." id="diagonal2" class="form-control shadow-none form-control-sm w-100 my-3">
+    <button onclick="calculateRhombus()" class="btn btn-dark w-100 my-2">Calculate</button>
+    <p id="showRhombus"></p>
+
+    <!-- Button Examples -->
+    <!-- <button onclick="functionOne()">Click me!!!</button> -->
+    <!-- <button ondblclick="alert('Twice')">Click me!!!</button> -->
+    <!-- <button onmouseenter="alert('Twice')">Click me!!!</button> -->
+    <!-- <button onmouseleave="alert('Twice')">Click me!!!</button> -->
+
+    <script>
+        const calculate = () => {
+            const pi = 22 / 7
+            // console.log(circle.value)
+            const radius = document.getElementById('circle').value
+            // console.log(d)
+            const answer = (pi * (radius ** 2)).toFixed(2)
+            console.log(`${answer} cm²`)
+            show.innerHTML += `The Area of the Circle is ${answer} cm²`
+            // circleDisplay.innerHTML = `<h3 class="text-primary text-center">${answer} cm²</h3>`
+        }
+
+        const calculateTriangle = () => {
+            const base = baseOfATriangle.value
+            const height = heightOfATriangle.value
+            const answer = 0.5 * base * height
+            showTriangle.innerHTML = `The Area of the Triangle is ${answer} cm²`
+        }
+
+        const calculateSquare = () => {
+            const side = sideOfASquare.value
+            const answer = side ** 2
+            showSquare.innerHTML = `The Area of a Square is ${answer} cm²`
+        }
+
+        const calculateParallelogram = () => {
+            const base = baseOfAParallelogram.value
+            const height = heightOfAParallelogram.value
+            const answer = base * height
+            showParallelogram.innerHTML = `The Area of the Parallelogram is ${answer} cm²`
+        }
+
+        const calculateBMI = () => {
+            const weight = bmiWei.value
+            const height = bmiHeight.value
+            const answer = weight / (height * height)
+            showBMI.innerHTML = `The Body Mass Index is ${answer} cm²`
+        }
+
+        const calculateTrapezium = () => {
+            const a = base1.value
+            const b = base2.value
+            const h = he.value
+            const answer = 0.5 * (a + b) * h
+            showTrapezium.innerHTML = `The Area of a Trapezium is ${answer} cm²`
+        }
+
+        const calculateRhombus = () => {
+            const a = diagonal1.value
+            const b = diagonal2.value
+            const answer = 0.5 * a * b
+            showRhombus.innerHTML = `The Area of a Rhombus is ${answer} cm²`
+        }
+
+
+
+        // Concatenation
+        // Area of a Circle
+        // const pi = 22/7;
+        // const radius = 4;
+        // const area = (pi * (radius ** 2)).toFixed(2);
+        // console.log(area + 'cm²');
+
+        // const food = 'Rice';
+        // const drink = 'Sprite';
+        // const number = 4
+
+        // console.log(`My friend's food is ${food} and my drink is ${drink}`)
+
+        // const surname = 'Mustapha';
+        // const firstName = 'Oluwadarasimi';
+        // console.log(`My name is ${surname} ${firstName}`)
+
+        // Function Example
+        // Function: An unpredictable guy that is gentle or silent unless called upon
+        // function functionOne() {
+        // alert('Dara')
+        // }
+        // const functionTwo = () => {
+        // alert('Femi')
+        // } // An Arrow function
+        // functionOne()
+        // functionTwo()
+    </script>
+</body>
+
+</html>
