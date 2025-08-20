@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bubbles">
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+        <span class="four"></span>
+        <span class="five"></span>
+        <span class="six"></span>
+        <span class="seven"></span>
+        <span class="seven"></span>
+    </div>
+    <div class="bubbles">
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+        <span class="four"></span>
+        <span class="five"></span>
+        <span class="six"></span>
+        <span class="seven"></span>
+        <span class="seven"></span>
+    </div>
+    <div class="bubbles">
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+        <span class="four"></span>
+        <span class="five"></span>
+        <span class="six"></span>
+        <span class="seven"></span>
+        <span class="seven"></span>
+    </div>
+    <div class="bubbles">
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+        <span class="four"></span>
+        <span class="five"></span>
+        <span class="six"></span>
+        <span class="seven"></span>
+        <span class="seven"></span>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="d-flex flex-column justify-content-center align-items-center min-vh-100">
+        <div class="card w-25 mx-auto mt-5 p-3 shadow border rounded-4">
+            <h2 class="card-title">C.G.P.A Checker</h2>
+            <div class="d-flex gap-3">
+                <input type="number" placeholder="Input your C.G.P.A....." id="CGPA_Checker" class="form-control w-75 shadow-none">
+                <button onclick="checkCGPA()" class="btn btn-success border w-25 rounded-2">Check</button>
+            </div>
+            <span id="show" class="mt-2 text-primary"></span>
+        </div>
+    
+        <div class="card w-25 mx-auto mt-3 p-3 shadow border rounded-4">
+            <h2 class="card-title">Grade Checker</h2>
+            <div class="d-flex gap-3">
+                <input type="number" placeholder="Input your score....." id="grade_checker" class="form-control w-75 shadow-none">
+                <button onclick="checkGrade()" class="btn btn-success border w-25 rounded-2">Check</button>
+            </div>
+            <span id="showGrade" class="mt-2 text-primary"></span>
+        </div>
+    </div>
+
+    <script>
+        const firstClass = new Audio('Audio/A.wav')
+        const secondClassUpper = new Audio('Audio/B.wav')
+        const secondClassLower = new Audio('Audio/One clap.wav')
+        const thirdClass = new Audio(`Audio/There's nothing.m4a`)
+        const pass = new Audio('Audio/audio_AUD-20200617-WA0066.mp3')
+        const fail = new Audio('Audio/You can never make it.m4a')
+
+
+        // alert(23)
+        const checkCGPA = () => {
+            const value = CGPA_Checker.value
+            if (!value) {
+                alert('Input your C.G.P.A')
+            }
+            else if (value < 1.00) {
+                console.log('fail');
+                show.innerHTML = `FAIL!!!`
+                fail.play()
+            }
+            else if (value >= 1.00 && value <= 1.49) {
+                console.log('pass');
+                show.innerHTML = `PASS!`
+                pass.play()
+            }
+            else if (value >= 1.50 && value <= 2.39) {
+                console.log('third');
+                show.innerHTML = `Third Class!`
+                thirdClass.play()
+            }
+            else if (value >= 2.40 && value <= 3.49) {
+                console.log('second lower');
+                show.innerHTML = `Second Class Lower!`
+                secondClassLower.play()
+            }
+            else if (value >= 3.50 && value <= 4.49) {
+                console.log('second upper');
+                show.innerHTML = `Second Class Upper!`
+                secondClassUpper.play()
+            }
+            else if (value >= 4.50 && value <= 5.00) {
+                console.log('first');
+                show.innerHTML = `First Class!`
+                firstClass.play()
+            }
+        }
+
+        const checkGrade = () => {
+            const value = grade_checker.value
+            if (!value) {
+                alert("Input your grade")
+            }
+            else if (value >= 70 && value <= 100) {
+                showGrade.innerHTML = `A`
+                firstClass.play()
+            }
+            else if (value >= 60 && value <= 69) {
+                showGrade.innerHTML = `B`
+                secondClassUpper.play()
+            }
+            else if (value >= 50 && value <= 59) {
+                showGrade.innerHTML = `C`
+                secondClassLower.play()
+            }
+            else if (value >= 45 && value <= 49) {
+                showGrade.innerHTML = `D`
+                pass.play()
+            }
+            else if (value >= 40 && value <= 44) {
+                showGrade.innerHTML = `E`
+                thirdClass.play()
+            }
+            else {
+                console.log("Fail");
+                fail.play()
+            }
+        }
+    </script>
+</body>
+</html>
