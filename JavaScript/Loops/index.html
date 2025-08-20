@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="trigger('Hello world!', 67, ['Janet', 'Bolu', 'Dara'])">Click me!</button>
+
+    <div id="show"></div>
+
+    <script>
+        // Parameterized function
+        // const trigger = (greeting, age, name) => {
+            // console.log(greeting);
+            // console.log(age);
+            // console.log(name);
+        // }
+
+        // For loop
+        // for (let index = 0; index < 10; index++) {
+        //     // console.log("I am a loop")
+        //     console.log(index + 1);
+        // }
+
+        for (let index = 15; index > 0; index--) {
+            // console.log(index);
+            show.innerHTML += `<br>${index}`
+            // show.innerHTML += `${index + '  '}`
+        }
+
+        // Array
+        const students = ["Dara", "Mohammed", "Tolu", "Shadrach", "Daniel", "Janet", "Kola", "Bridget", "Shalom", "Tola"]
+        console.log(students); // logs the array
+        console.log(students[3]); // logs the array in index[3]
+        console.log(students[0].length); // Length of the array in index[0]
+        console.log(students[students.length - 1]); // Last item in the array
+        console.log(students.length); // Length of an array
+
+        // For loop x Array
+        for (let index = 0; index < students.length; index++) {
+            console.log(`${index + 1}. ${students[index]}`);
+        }
+    </script>
+</body>
+</html>
