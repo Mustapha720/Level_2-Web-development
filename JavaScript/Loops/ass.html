@@ -35,16 +35,18 @@
         for (let index = 99; index > 0; index--) {
             console.log(`${index} bottles of beer on the wall, ${index} bottles of beer on the wall`);
             f = `<br>${index} bottles of beer on the wall, ${index} bottles of beer on the wall`
-            if (index - 1 > 0) {
-                console.log(`Take one down and pass it around, ${index - 1} bottles of beer on the wall.`);
-                i = `Take one down and pass it around, ${index - 1} bottles of beer on the wall.`
-            }
-            else {
-                console.log(`No more bottles of beer on the wall, no more bottles of beer.`);
-                console.log(`Go to the store and buy some more, 99 bottles of beer on the wall.`);
+            i = `Take one down and pass it around, ${index - 1} bottles of beer on the wall.`
+            show.innerHTML += `${f} <br> ${i}`
+            if (index === 1) {
                 last.innerHTML += `No more bottles of beer on the wall, no more bottles of beer. <br> Go to the store and buy some more, 99 bottles of beer on the wall.`
             }
-            show.innerHTML += `${f} <br> ${i}`
+            // if (index - 1 > 0) {
+                // console.log(`Take one down and pass it around, ${index - 1} bottles of beer on the wall.`);
+            // }
+            // else {
+                // console.log(`No more bottles of beer on the wall, no more bottles of beer.`);
+                // console.log(`Go to the store and buy some more, 99 bottles of beer on the wall.`);
+            // }
         }
     </script>
 </body>
