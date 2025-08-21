@@ -16,11 +16,12 @@
                 <div class="text-center mb-4">
                     <h1 class="display-5 fw-bold">99 Bottles of Beer</h1>
                     <p class="lead">Lyrics of the song 99 Bottles of Beer</p>
+                    <!-- <marquee behavior="row" direction="">Lyrics of the song 99 Bottles of Beer</marquee> -->
                 </div>
                 <div class="card shadow-sm mb-3">
                     <div class="card-body text-center">
                         <p id="show" class="mb-2"></p>
-                        <p id="showDecrease" class="mb-2"></p>
+                        <!-- <p id="showDecrease" class="mb-2"></p> -->
                         <p id="last" class="fw-bold text-danger"></p>
                     </div>
                 </div>
@@ -33,7 +34,7 @@
     <script>
         for (let index = 99; index > 0; index--) {
             console.log(`${index} bottles of beer on the wall, ${index} bottles of beer on the wall`);
-            f = `${index} bottles of beer on the wall, ${index} bottles of beer on the wall`
+            f = `<br>${index} bottles of beer on the wall, ${index} bottles of beer on the wall`
             if (index - 1 > 0) {
                 console.log(`Take one down and pass it around, ${index - 1} bottles of beer on the wall.`);
                 i = `Take one down and pass it around, ${index - 1} bottles of beer on the wall.`
@@ -41,9 +42,9 @@
             else {
                 console.log(`No more bottles of beer on the wall, no more bottles of beer.`);
                 console.log(`Go to the store and buy some more, 99 bottles of beer on the wall.`);
-                last.innerHTML += `No more bottles of beer on the wall, no more bottles of beer. <p> Go to the store and buy some more, 99 bottles of beer on the wall.`
+                last.innerHTML += `No more bottles of beer on the wall, no more bottles of beer. <br> Go to the store and buy some more, 99 bottles of beer on the wall.`
             }
-            show.innerHTML += `${f} <p> ${i}`
+            show.innerHTML += `${f} <br> ${i}`
         }
     </script>
 </body>
