@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display_results"></div>
+
+    <script>
+        const surnames = ['Adu', 'Richard', 'Ruth', 'Abraham', 'Janet']
+        const firstNames = ['Shadrach', 'John', 'Luke', 'Sarah', 'Mercy']
+        const middleNames = ['Elozino', 'Bukola', 'Samuel', 'Taiwo', 'Femi']
+
+        // for (let i = 0; i < surnames.length; i++) {
+        //     console.log(i + 1, surnames[i]);
+        //     for (let j = 0; j < firstNames.length; j++) {
+        //         console.log(firstNames[j]);
+        //     }
+        // }
+
+        for (let i = 0; i < surnames.length; i++) {
+            for (let j = 0; j < firstNames.length; j++) {
+                for (let k = 0; k < middleNames.length; k++) {
+                    console.log(`${surnames[i]} ${firstNames[j]} ${middleNames[k]}`);
+                }
+            }
+        }
+
+
+        // Multiplication Tables
+        for (let i = 1; i <= 3; i++) {
+            for (let j = 1; j <= 12; j++) {
+                display_results.innerHTML += `${i} x ${j} = ${i * j} <br>`;
+            }
+        }
+    </script>
+</body>
+</html>
