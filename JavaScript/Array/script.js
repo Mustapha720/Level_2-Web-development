@@ -1,4 +1,9 @@
-let product_array = []
+let product_array = JSON.parse(localStorage['Products']);
+// console.log(product_array);
+
+displayProduct()
+
+
 const uploadProduct = () => {
     const productName = product_name.value;
     const amount = price.value;
@@ -10,12 +15,13 @@ const uploadProduct = () => {
 
     product_array.push(product)
     console.log(product_array);
+    localStorage.setItem('Products', JSON.stringify(product_array))
     displayProduct();
 }
 
 
 
-const displayProduct = () => {
+function displayProduct() {
     for (let i = 0; i < product_array.length; i++) {
         productDisplay.innerHTML += `<tr>
                                         <td>${product_array[i].name}</td>
@@ -23,7 +29,7 @@ const displayProduct = () => {
                                         <td>${product_array[i].quantity}</td>
                                     </tr>`;
     }
-    product_array = []
+    // product_array = []
     product_name.value = ""
     price.value = ""
     quantity.value = ""
