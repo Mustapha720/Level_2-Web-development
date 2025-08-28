@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <span id="displayToken"></span>
+    <button class="btn btn-dark" onclick="getToken()">Get token</button>
+
+    <script>
+        // Local Storage is an object with two main function - setItem and getItem
+        // setItem is used when the user is attempting to store an information in localStorage
+        // WHILE
+        // getItem is used to retrieve stored information
+
+        const token = "Dara"
+        localStorage.setItem("LoginToken", token)
+
+        const student = ['Joy', 'James', 'Ayo']
+        localStorage.setItem("Students", JSON.stringify(student))
+
+        console.log(JSON.parse(localStorage["Students"]));
+        // const stored = JSON.parse(localStorage["Students"]);
+        // console.log(stored[1]);
+
+        // JSON.stringify() -- Is used when sending an array/object to localStorage to preserve the structure of the array/object
+        // JSON.parse() -- To receive
+        const getToken = () => {
+            displayToken.innerHTML = localStorage.getItem("LoginToken");
+        }
+    </script>
+</body>
+</html>
