@@ -34,19 +34,23 @@
     <div id="display" class="row"></div>
 
     <script>
-        let p_array = []
+        let p_array = JSON.parse(localStorage["Product"])
+
+        product()
+
         const addItem = () => {
             const name = product_name.value
             const description = product_description.value
             const price = product_price.value
 
             const obj = {name: name, description: description, price: price}
-            console.log(obj)
+            // console.log(obj)
             p_array.push(obj)
+            localStorage.setItem("Product", JSON.stringify(p_array))
             product()
         }
 
-        const product = () => {
+        function product() {
             for (let i = 0; i < p_array.length; i++) {
                 display.innerHTML += `<div class="card mx-5 g-2" style="width: 12rem;">
                                         <div class="card-body">
@@ -57,7 +61,7 @@
                                         </div>
                                     </div>`;
             }
-            p_array = []
+            // p_array = []
             product_name.value = ""
             product_description.value = ""
             product_price.value = ""
