@@ -34,9 +34,11 @@
     <div id="display" class="row"></div>
 
     <script>
-        let p_array = JSON.parse(localStorage["Product"])
+        let p_array = localStorage['Product'] ? JSON.parse(localStorage["Product"]) : []
 
-        product()
+        localStorage['Product'] ? product() : display.innerHTML = "NNo product added yet!!!"
+
+        // product()
 
         const addItem = () => {
             const name = product_name.value
@@ -51,6 +53,7 @@
         }
 
         function product() {
+            display.innerHTML = ""
             for (let i = 0; i < p_array.length; i++) {
                 display.innerHTML += `<div class="card mx-3" style="width: 12rem;">
                                         <div class="card-body">
