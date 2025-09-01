@@ -1,5 +1,7 @@
-let product_array = JSON.parse(localStorage['Products']);
+let product_array = localStorage['Products'] ? JSON.parse(localStorage['Products']) : [];
 // console.log(product_array);
+
+// localStorage['Products'] ? displayProduct() : productDisplay.innerHTML = "No product added yet"
 
 displayProduct()
 
@@ -22,15 +24,24 @@ const uploadProduct = () => {
 
 
 function displayProduct() {
-    for (let i = 0; i < product_array.length; i++) {
-        productDisplay.innerHTML += `<tr>
-                                        <td>${product_array[i].name}</td>
-                                        <td>${product_array[i].price}</td>
-                                        <td>${product_array[i].quantity}</td>
+    if (localStorage['Products'] != undefined) {
+        productDisplay.innerHTML = `<tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
                                     </tr>`;
+        for (let i = 0; i < product_array.length; i++) {
+            productDisplay.innerHTML += `<tr>
+                                            <td>${product_array[i].name}</td>
+                                            <td>${product_array[i].price}</td>
+                                            <td>${product_array[i].quantity}</td>
+                                        </tr>`;
+        }
+        // product_array = []
+        product_name.value = ""
+        price.value = ""
+        quantity.value = ""
+    } else {
+        productDisplay.innerHTML = "No product added yet"
     }
-    // product_array = []
-    product_name.value = ""
-    price.value = ""
-    quantity.value = ""
 }
