@@ -29,12 +29,14 @@ function displayProduct() {
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
+                                        <th>Actions</th>
                                     </tr>`;
         for (let i = 0; i < product_array.length; i++) {
             productDisplay.innerHTML += `<tr>
                                             <td>${product_array[i].name}</td>
                                             <td>${product_array[i].price}</td>
                                             <td>${product_array[i].quantity}</td>
+                                            <td><button class="btn btn-danger" onclick="deleteProduct(${index})">Delete</button></td>
                                         </tr>`;
         }
         // product_array = []
@@ -45,3 +47,10 @@ function displayProduct() {
         productDisplay.innerHTML = "No product added yet"
     }
 }
+
+
+// function deleteProduct (id) {
+    // console.log(id);
+    // product_array.splice(id, 1);
+    // localStorage.setItem('Products', JSON.stringify(product_array));
+// }
