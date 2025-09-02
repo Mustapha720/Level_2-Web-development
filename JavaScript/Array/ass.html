@@ -45,11 +45,16 @@
             const description = product_description.value
             const price = product_price.value
 
-            const obj = {name: name, description: description, price: price}
-            // console.log(obj)
-            p_array.push(obj)
-            localStorage.setItem("Product", JSON.stringify(p_array))
-            product()
+            if (product_name.value === "" || product_description.value === "" || product_price.value === "") {
+                alert("You have to input the details of the product")
+            }
+            else{
+                const obj = {name: name, description: description, price: price}
+                // console.log(obj)
+                p_array.push(obj)
+                localStorage.setItem("Product", JSON.stringify(p_array))
+                product()
+            }
         }
 
         function product() {
