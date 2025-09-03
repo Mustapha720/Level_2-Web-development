@@ -22,6 +22,11 @@ const uploadProduct = () => {
 }
 
 
+const deleteProduct = (index) => {
+    product_array.splice(index, 1)
+    displayProduct()
+}
+
 
 function displayProduct() {
     if (localStorage['Products'] != undefined) {
@@ -36,7 +41,7 @@ function displayProduct() {
                                             <td>${product_array[i].name}</td>
                                             <td>${product_array[i].price}</td>
                                             <td>${product_array[i].quantity}</td>
-                                            <td><button class="btn btn-danger" onclick="deleteProduct(${index})">Delete</button></td>
+                                            <td><button class="btn btn-danger" onclick="deleteProduct(${i})">Delete</button>&nbsp;<button class="btn btn-warning">Edit</button></td>
                                         </tr>`;
         }
         // product_array = []
