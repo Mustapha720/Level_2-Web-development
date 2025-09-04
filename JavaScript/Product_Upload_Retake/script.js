@@ -5,6 +5,7 @@ window.addEventListener('keydown', (event) => {
     }
 })
 
+let editIndex;
 
 let allProducts = []
 
@@ -62,12 +63,52 @@ const deleteProduct = (index) => {
     if (check === true) {
         // console.log(index);
         allProducts.splice(index, 1)
+        localStorage.setItem('temuProducts', JSON.stringify(allProducts));
         displayProducts()
     } else {
         displayProducts()
     }
 }
 
+
+const editProduct = (index) => {
+    console.log(index);
+    // console.log(allProducts[index].productName)
+    editIndex = index;
+
+    p_name.value = allProducts[index].productName
+    p_price.value = allProducts[index].productPrice
+    p_quantity.value = allProducts[index].productQuantity
+}
+
+
+const edit = () => {
+    if(p_name.value.trim() === '' || p_price === '' || p_quantity === '') {
+        alert("Please fill in all inputs")
+    } else {
+        const productName2 = p_name.value.trim()
+        const productPrice2 = p_price.value.trim()
+        const productQuantity2 = p_quantity.value.trim()
+
+        const Obj2 = {
+            productName: productName2,
+            productPrice: productPrice2,
+            productQuantity: productQuantity2
+        }
+        console.log(Obj2);
+
+        allProducts.splice(editIndex, 1, Obj2)
+
+        localStorage.setItem('temuProducts', JSON.stringify(allProducts))
+        // localStorage.temuProducts =  JSON.stringify(allProducts)
+
+        displayProducts()
+
+        // p_name.value = ''
+        // p_price.value = ''
+        // p_quantity.value = ''
+    }
+}
 
 
 function displayProducts() {
@@ -85,7 +126,7 @@ function displayProducts() {
                                     <td>${allProducts[i].productName}</td>
                                     <td>${allProducts[i].productPrice}</td>
                                     <td>${allProducts[i].productQuantity}</td>
-                                    <td><button class="btn btn-danger" onclick="deleteProduct(${i})">Delete</button>&nbsp;<button class="btn btn-warning">Edit</button></td>
+                                    <td><button class="btn btn-danger" onclick="deleteProduct(${i})">Delete</button>&nbsp;<button class="btn btn-warning" onclick="editProduct(${i})" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button></td>
                                 </tr>`
         }
     } else {
