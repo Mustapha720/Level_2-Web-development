@@ -28,18 +28,30 @@ const signUp = () => {
     
         // console.log(Obj);
     
-        signupArray.push(Obj)
-        console.log(signupArray)
-    
-        localStorage.setItem('sign_up', JSON.stringify(signupArray))
+
+        const user1 = signupArray.find(
+            (u) => u.eMail === e_mail.value
+        );
+
+        if (user1) {
+            alert('Email already exists!')
+            first_name.value = ''
+            last_name.value = ''
+            e_mail.value = ''
+            pass_word.value = ''
+        } else{
+            signupArray.push(Obj)
+            console.log(signupArray)
+        
+            localStorage.setItem('sign_up', JSON.stringify(signupArray))
+            window.location.href = 'signin.html'
+        }
     
     
         first_name.value = ''
         last_name.value = ''
         e_mail.value = ''
         pass_word.value = ''
-
-        window.location.href = 'signin.html'
     }
 }
 
@@ -57,13 +69,14 @@ const signIn = () => {
 
         console.log(signupArray)
 
-        for (let i = 0; i < signupArray.length; i++) {
-            console.log(signupArray[i].eMail);
-            if (mail === signupArray[i].eMail || pass === signupArray[i].password) {
-                window.location.href = 'dashboard.html'
-            } else {
-                alert("Invalid inputs")
-            }
+        const user = signupArray.find(
+            (u) => u.eMail === mail && u.password === pass
+        );
+
+        if (user) {
+            window.location.href = 'dashboard.html';
+        } else {
+            alert("Invalid inputs");
         }
 
         c_email.value = ''
