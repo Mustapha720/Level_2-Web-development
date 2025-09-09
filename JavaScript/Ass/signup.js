@@ -67,13 +67,16 @@ const signIn = () => {
         const pass = word.value.trim();
         console.log(mail, pass);
 
-        console.log(signupArray)
+        // console.log(signupArray)
 
         const user = signupArray.find(
             (u) => u.eMail === mail && u.password === pass
         );
 
         if (user) {
+            localStorage.setItem('users', JSON.stringify(user))
+            // console.log(localStorage.getItem("users"));
+            // console.log(JSON.parse(localStorage["users"]))
             window.location.href = 'dashboard.html';
         } else {
             alert("Invalid inputs");
