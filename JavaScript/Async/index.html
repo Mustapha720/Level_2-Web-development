@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getResult()">Get result</button>
+    <div id="show"></div>
+
+    <script>
+        const url = "https://jsonplaceholder.typicode.com/users";
+        const getResult = async() => {
+            const response = await fetch(url);
+            const newResponse = await response.json();
+            console.log(newResponse);
+            for (let index = 0; index < newResponse.length; index++) {
+                const element = newResponse[index];
+                // console.log(element)
+                show.innerHTML += `
+                    <p>${element.id}.</p>
+                    <p>${element.name}</p>
+                `
+            }
+        }
+    </script>
+</body>
+</html>
