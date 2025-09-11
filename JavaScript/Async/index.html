@@ -7,10 +7,12 @@
 </head>
 <body>
     <button onclick="getResult()">Get result</button>
+    <button onclick="getResult2()">Get result2</button>
     <div id="show"></div>
 
     <script>
         const url = "https://jsonplaceholder.typicode.com/users";
+        const url2 = "http://api.github.com/users";
         const getResult = async() => {
             const response = await fetch(url);
             const newResponse = await response.json();
@@ -24,6 +26,43 @@
                 `
             }
         }
+
+        const getResult2 = () => {
+            fetch(url2)
+            .then((response) => {
+                return response.json();
+            }) // .then(response => response.json())
+            .then((newResponse) => {
+                console.log(newResponse);
+                newResponse.map((user, id) => {
+                    show.innerHTML += `
+                        <p>${id + 1}. ${user.login}</p>
+                    `
+                })
+            })
+            .catch((error) => {
+                console.log(error.message);
+                if (error.message === 'Failed to fetch'){
+                    show.innerHTML = 'No internet connection'
+                }
+            })
+        }
+
+        // function make (a, b) {
+        //     return a + b
+        // }
+        // let funcOne = make(5, 10)
+        // console.log(funcOne);
+
+        // Array.map()
+        const nigerianFoods = [
+            {name: "Eba", price: 200},
+            {name: "Fufu", price: 250},
+            {name: "Pounded Yam", price: 400}
+        ]
+        nigerianFoods.map((info, count) => {
+            show.innerHTML += `<p>${count + 1}. ${info.name}, ${info.price}</p>`
+        })
     </script>
 </body>
 </html>
