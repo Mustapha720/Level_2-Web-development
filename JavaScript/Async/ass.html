@@ -7,10 +7,12 @@
 </head>
 <body>
     <button onclick="music()">Click me!</button>
+    <button onclick="music2()">Click me twice!!!</button>
     <div id="show"></div>
 
     <script>
         const url = "https://musicapi-19wk.onrender.com/music/myAPI"
+        const url2 = "https://music-api-6dxs.onrender.com/songs"
         const music = () => {
             fetch(url)
             .then((response) => {
@@ -19,25 +21,28 @@
             .then((response) => {
                 console.log(response);
                 response.map((songs, id) => {
-                    // show.innerHTML += `${}${}${}`
+                    document.getElementById('show').innerHTML += `<p>${id + 1}. ${songs.albumName} <br> ${songs.artistName} <br> <img src="${songs.songImage}" width="100px"> <br> ${songs.songTitle} <br> ${songs.releaseDate} <br> <audio id="song-${id}"><source src="${songs.songUrl}" type="audio/mpeg"></audio> <br> <button onclick="playSong(${id})">Play</button> <button onclick="pauseSong(${id})">Pause</button></p>`
                 })
             })
         }
 
+        const music2 = () => {
+            fetch(url2)
+            .then(response => {
+                return response.json()
+            })
+            .then((response) => {
+                console.log(response)
+            })
+        }
 
+        const playSong = (id) => {
+            document.getElementById(`song-${id}`).play();
+        }
 
-        const food = "Fufu"
-        const nigerianFoods = [
-            {name: "Eba", price: 200},
-            {name: "Fufu", price: 250},
-            {name: "Pounded Yam", price: 400}
-        ]
-        const found = nigerianFoods.find(u => u.name === food)
-        console.log(found)
-        show.innerHTML += `${found.name} ${found.price}`
-        // nigerianFoods.map((food, id) => {
-        //     show.innerHTML += `<p>${id + 1}. ${food.name}, ${food.price}</p>`
-        // })
+        const pauseSong = (id) => {
+            document.getElementById(`song-${id}`).pause();
+        }
     </script>
 </body>
 </html>

@@ -59,9 +59,9 @@
         })
 
 
-        const signedUser = JSON.parse(localStorage["users"])
+        const signedUser = JSON.parse(localStorage["users"]);
         if (signedUser) {
-            show.innerHTML = `<h2>Welcome ${signedUser.firstName} ${signedUser.lastName}</h2>`
+            show.innerHTML = `<h2>Welcome, ${signedUser.firstName} ${signedUser.lastName}</h2>`
         } else {
             logOut()
         }
