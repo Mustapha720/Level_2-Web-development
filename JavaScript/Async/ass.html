@@ -1,48 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
+
 <body>
-    <button onclick="music()">Click me!</button>
-    <button onclick="music2()">Click me twice!!!</button>
-    <div id="show"></div>
+    <button onclick="music()" class="btn btn-primary m-3">Click me!</button>
+    <div id="show" class="d-flex flex-wrap"></div>
 
     <script>
         const url = "https://musicapi-19wk.onrender.com/music/myAPI"
         const url2 = "https://music-api-6dxs.onrender.com/songs"
         const music = () => {
             fetch(url)
-            .then((response) => {
-                return response.json()
-            })
-            .then((response) => {
-                console.log(response);
-                response.map((songs, id) => {
-                    document.getElementById('show').innerHTML += `<p>${id + 1}. ${songs.albumName} <br> ${songs.artistName} <br> <img src="${songs.songImage}" width="100px"> <br> ${songs.songTitle} <br> ${songs.releaseDate} <br> <audio id="song-${id}"><source src="${songs.songUrl}" type="audio/mpeg"></audio> <br> <button onclick="playSong(${id})">Play</button> <button onclick="pauseSong(${id})">Pause</button></p>`
+                .then((response) => {
+                    return response.json()
                 })
-            })
-        }
-
-        const music2 = () => {
-            fetch(url2)
-            .then(response => {
-                return response.json()
-            })
-            .then((response) => {
-                console.log(response)
-            })
+                .then((response) => {
+                    console.log(response);
+                    response.map((songs, id) => {
+                        document.getElementById('show').innerHTML += `
+                        <div class="border rounded-4 bg-warning d-flex flex-column justify-content-center align-items-center mx-auto my-3" style="width: 250px; height: 300px;">
+                            <p>
+                                ${songs.albumName} 
+                                <br>
+                                ${songs.artistName} 
+                                <br>
+                                <img src="${songs.songImage}" width="100px"> 
+                                <br> 
+                                ${songs.songTitle} 
+                                <br> 
+                                ${songs.releaseDate} 
+                                <br> 
+                                <audio id="song${id}">
+                                    <source src="${songs.songUrl}" type="audio/mpeg">
+                                </audio> 
+                                <br> 
+                                <button onclick="playSong(${id})" class="btn btn-primary">Play</button> 
+                                <button onclick="pauseSong(${id})" class="btn btn-primary">Pause</button>
+                            </p>
+                        </div>
+                        `
+                    })
+                })
         }
 
         const playSong = (id) => {
-            document.getElementById(`song-${id}`).play();
+            document.getElementById(`song${id}`).play();
         }
 
         const pauseSong = (id) => {
-            document.getElementById(`song-${id}`).pause();
+            document.getElementById(`song${id}`).pause();
         }
     </script>
 </body>
+
 </html>
