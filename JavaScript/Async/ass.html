@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Music App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
-    <button onclick="music()" class="btn btn-primary m-3">Click me!</button>
+    <h1 class="d-flex justify-content-center align-items-center my-5">
+        Dashboard
+    </h1>
+    <!-- <button onclick="music()" class="btn btn-primary m-3">Click me!</button> -->
     <div id="show" class="d-flex flex-wrap"></div>
 
     <script>
@@ -25,13 +28,13 @@
                     console.log(response);
                     response.map((songs, id) => {
                         document.getElementById('show').innerHTML += `
-                        <div class="border rounded-4 bg-warning d-flex flex-column justify-content-center align-items-center mx-auto my-3" style="width: 250px; height: 300px;">
-                            <p>
-                                ${songs.albumName} 
+                        <div class="border rounded-4 bg-primary-subtle d-flex flex-column justify-content-center align-items-center mx-auto my-3 p-4" style="width: 300px; height: 400px;">
+                            <p class="align-items-center">
+                                <img src="${songs.songImage}" width="100px"> 
                                 <br>
                                 ${songs.artistName} 
                                 <br>
-                                <img src="${songs.songImage}" width="100px"> 
+                                ${songs.albumName}
                                 <br> 
                                 ${songs.songTitle} 
                                 <br> 
@@ -48,6 +51,9 @@
                         `
                     })
                 })
+                .catch(err => {
+                    console.log(err)
+                })
         }
 
         const playSong = (id) => {
@@ -57,6 +63,7 @@
         const pauseSong = (id) => {
             document.getElementById(`song${id}`).pause();
         }
+        music()
     </script>
 </body>
 
