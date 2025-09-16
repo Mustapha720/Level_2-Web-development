@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // Checking current date and time
+        const time = new Date().toLocaleTimeString()
+        const date = new Date().toLocaleDateString()
+        const year = new Date().getFullYear()
+        const yea = new Date().toUTCString()
+        console.log(time);
+        console.log(date);
+        console.log(year);
+        console.log(yea);
+
+        console.log(window);
+        navigator.geolocation.getCurrentPosition((data) => {
+            console.log(data.coords);
+        })
+        </script>
+</body>
+</html>
