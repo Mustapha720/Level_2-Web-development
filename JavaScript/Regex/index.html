@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="re" placeholder="d">
+    <button onclick="regex()">Click me!</button>
+
+    <script>
+        const regex = () => {
+            const regex = /^(([A-Z]{1})([a-z]{1,}))([\s])(([A-Z]{1})([a-z]{1,}))$/
+            const test_regex = regex.test(re.value)
+            if (test_regex) {
+                console.log("Passed")
+            } else{
+                console.log("Incorrect Full Details")
+            }
+        }
+    </script>
+</body>
+</html>
