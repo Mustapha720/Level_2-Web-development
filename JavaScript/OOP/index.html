@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // const arrTest = new Array(5).fill("Dara", 0, 2).fill("Tonia", 2, 4);
+        const arr = new Array(5).fill("Dara");
+        console.log(arr);
+
+        class House {
+            constructor (roof, door, ferese, floor) {
+                this.roof = roof,
+                this.door = door,
+                this.window = ferese,
+                this.flooring = floor
+            }
+
+            build (name) {
+                return `${name}, will build using ${this.window} as their window`
+            }
+        }
+
+        const toniaHouse = new House('Gerard', 'Mahogany', 'Aluminum sliding', 'Tiles')
+        const mohammedHouse = new House('Raffia Palm', 'Oak', 'Louvres', 'Terracotta')
+        console.log(toniaHouse);
+        console.log(toniaHouse.build('Tonia'));
+        console.log(mohammedHouse);
+        console.log(mohammedHouse.build('Mohammed'));
+
+
+        class Team {
+            constructor (manager, bp, cf = 'Ferran Torres', gk = 'Joan Garcia') {
+                this.manager = manager,
+                this.centerForward = cf,
+                this.goalKeeper = gk,
+                this.bestPlayer = bp
+            }
+
+            favorite(fav){
+                return `${fav} was the best player in barcelona`
+            }
+        }
+
+        const barcelona = new Team('Hansi Flick', 'Lionel Messi', 'Robert Lewandowski', 'Marc-Andre ter Stegen')
+        console.log(barcelona);
+        console.log(barcelona.favorite("Messi"));
+
+
+        class ToyotaCar {
+            constructor (engine, tyre, bumper) {
+                this.engine = engine,
+                this.tyre = tyre,
+                this.bumper = bumper
+            }
+        }
+
+        class Hilux extends ToyotaCar { //Hilux is inheriting ToyotaCar
+            constructor (trailer, tyre) {
+                super(tyre)
+                this.trailer = trailer
+            }
+        }
+
+        const myCar = new Hilux(true, 5);
+        console.log(myCar);
+    </script>
+</body>
+</html>
