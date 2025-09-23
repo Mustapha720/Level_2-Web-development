@@ -27,13 +27,32 @@
     </div>
 
     <img src="/bence-balla-schottner-deGn9vSwXIM-unsplash.jpg" alt="" width="50%" height="500px">
+    <div id="show"></div>
 
     <script>
-        const add = () => {
-            const name = playerName.value
-            console.log(name)
-            const selectedOption = document.getElementById("selectId").value
-            console.log(selectedOption);
+        // const add = () => {
+        //     const name = playerName.value
+        //     console.log(name)
+        //     const selectedOption = document.getElementById("selectId").value
+        //     console.log(selectedOption);
+        // }
+
+        class FootballLineup{
+            constructor (name, position) {
+                this.position = position,
+                this.name = name
+            }
+
+            addPlayer () {
+                show.innerHTML += `
+                    <div class="try">jgu</div>
+                `
+            }
+        }
+
+        const add = () =>{
+            const player = new FootballLineup(playerName.value, selectId.value)
+            player.addPlayer()
         }
     </script>
 </body>
