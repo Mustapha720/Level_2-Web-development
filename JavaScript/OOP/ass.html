@@ -4,29 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
-    <div>
-        <input type="text" placeholder="e.g Lionel Messi" id="playerName">
-        <select name="Positions" id="selectId" title="Positions">
-            <option value="goalKeeper">GK</option>
-            <option value="centerBack1">CB1</option>
-            <option value="centerBack2">CB2</option>
-            <option value="leftBack">LB</option>
-            <option value="rightBack">RB</option>
-            <option value="defensiveMidfielder">DMF</option>
-            <option value="centerMidfielder">CMF</option>
-            <option value="attackingMidfielder">AMF</option>
-            <option value="leftWinger">LW</option>
-            <option value="rightWinger">RW</option>
-            <option value="centerForward1">CF1</option>
-            <option value="centerForward2">CF2</option>
-        </select>
-        <button onclick="add()">Add Player</button>
+<body class="bg-primary">
+    <div class="container py-5"></div>
+        <div class="row justify-content-center align-items-center">
+            <!-- Form Card -->
+            <div class="col-md-5">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4 text-primary fw-bold">Football Lineup</h2>
+                        <div class="mb-3">
+                            <label for="playerName" class="form-label fw-semibold">Player Name</label>
+                            <input type="text" placeholder="e.g. Lionel Messi" id="playerName" class="form-control" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="selectId" class="form-label fw-semibold">Position</label>
+                            <select name="Positions" id="selectId" title="Positions" class="form-select">
+                                <option value="" disabled selected>Select Position</option>
+                                <option class="GK" value="goalKeeper">GK</option>
+                                <option class="CB1" value="centerBack1">CB1</option>
+                                <option class="CB2" value="centerBack2">CB2</option>
+                                <option class="LB" value="leftBack">LB</option>
+                                <option class="RB" value="rightBack">RB</option>
+                                <option class="DMF" value="defensiveMidfielder">DMF</option>
+                                <option class="CMF" value="centerMidfielder">CMF</option>
+                                <option class="AMF" value="attackingMidfielder">AMF</option>
+                                <option class="LW" value="leftWinger">LW</option>
+                                <option class="RW" value="rightWinger">RW</option>
+                                <option class="CF1" value="centerForward1">CF1</option>
+                                <option class="CF2" value="centerForward2">CF2</option>
+                            </select>
+                        </div>
+                        <div class="d-grid">
+                            <button onclick="add()" class="btn btn-primary btn-lg fw-bold shadow-sm">Add Player</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Image Card -->
+            <div class="col-md-6 d-none d-md-block">
+                <div class="card border-0 shadow-lg">
+                    <img src="/bence-balla-schottner-deGn9vSwXIM-unsplash.jpg" alt="Football Field" class="card-img-top rounded" style="height: 500px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
     </div>
 
-    <img src="/bence-balla-schottner-deGn9vSwXIM-unsplash.jpg" alt="" width="50%" height="500px">
     <div id="show"></div>
 
     <script>
@@ -43,16 +68,23 @@
                 this.name = name
             }
 
-            addPlayer () {
+            addPlayer (name) {
                 show.innerHTML += `
-                    <div class="try">jgu</div>
+                    <div class="try">
+                        ${name}
+                        <img src="/person-circle.svg" alt="">
+                    </div>
                 `
             }
         }
 
         const add = () =>{
-            const player = new FootballLineup(playerName.value, selectId.value)
-            player.addPlayer()
+            if(!playerName.value){
+                alert("Input player name!!!")
+            } else {
+                const player = new FootballLineup(playerName.value, selectId.value)
+                player.addPlayer(playerName.value)
+            }
         }
     </script>
 </body>
