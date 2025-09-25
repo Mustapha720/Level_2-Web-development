@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body class="bg-primary">
     <div class="container py-5"></div>
         <div class="row justify-content-center align-items-center">
             <!-- Form Card -->
-            <div class="col-md-5">
+            <div class="col-md-3">
                 <div class="card shadow-lg border-0">
                     <div class="card-body">
                         <h2 class="text-center mb-4 text-primary fw-bold">Football Lineup</h2>
@@ -55,13 +55,6 @@
     <div id="show"></div>
 
     <script>
-        // const add = () => {
-        //     const name = playerName.value
-        //     console.log(name)
-        //     const selectedOption = document.getElementById("selectId").value
-        //     console.log(selectedOption);
-        // }
-
         class FootballLineup{
             constructor (name, position) {
                 this.position = position,
@@ -70,7 +63,7 @@
 
             addPlayer (name) {
                 show.innerHTML += `
-                    <div class="try">
+                    <div class="try ${this.position}">
                         ${name}
                         <img src="/person-circle.svg" alt="">
                     </div>
@@ -82,9 +75,10 @@
             if(!playerName.value){
                 alert("Input player name!!!")
             } else {
-                const player = new FootballLineup(playerName.value, selectId.value)
-                player.addPlayer(playerName.value)
+                const jj = new FootballLineup(playerName.value, selectId.value)
+                jj.addPlayer(playerName.value)
             }
+            playerName.value = ''
         }
     </script>
 </body>
