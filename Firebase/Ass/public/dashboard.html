@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border-right: 1px solid #333;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #444;
+        }
+
+        .profile p {
+            margin: 10px 0 5px;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            margin-top: auto;
+            background: #0059ff;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #003bb3;
+        }
+
+        /* Main Chat Area */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #1a1a1a;
+            border-radius: 20px 0 0 20px;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 15px;
+            text-align: center;
+            background: #222;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #333;
+            color: white;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            opacity: 0;
+            animation: fadeIn 0.4s forwards;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: #0059ff;
+            color: #fff;
+            border-bottom-right-radius: 2px;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+            background: #333;
+            color: #f1f1f1;
+            border: 1px solid #444;
+            border-bottom-left-radius: 2px;
+            white-space: pre-wrap;
+        }
+
+        /* Input */
+        .chat-input-area {
+            display: flex;
+            padding: 12px;
+            background: #222;
+            border-top: 1px solid #333;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            background: #333;
+            color: #fff;
+        }
+
+        .send-btn {
+            margin-left: 10px;
+            padding: 12px 18px;
+            border: none;
+            background: #0059ff;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .send-btn:hover {
+            background: #003bb3;
+        }
+
+        /* Spinner */
+        .loading {
+            align-self: flex-start;
+            background: #333;
+            border-radius: 12px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .loading img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Code block */
+        .ai-message pre {
+            background: #1e1e1e;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 8px 0;
+            color: #00ff95;
+        }
+
+        .ai-message code {
+            background: #1e1e1e;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: "Courier New", monospace;
+            color: #00d9ff;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Scrollbar */
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                border-right: none;
+                border-bottom: 1px solid #333;
+            }
+
+            .main {
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <div class="profile" id="show">
+            <img src="https://via.placeholder.com/70" alt="Profile">
+            <p>User Name</p>
+            <small>Email</small>
+        </div>
+        <button onclick="signUserOut()" class="logout-btn">Sign out</button>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="main">
+        <div class="chat-header">✨ Gemini AI Chat</div>
+        <div class="chat-box" id="chatBox"></div>
+        <div class="chat-input-area">
+            <input type="text" id="question" class="chat-input" placeholder="Ask anything 🫠" />
+            <button onclick="getGeminiResponse()" class="send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Your Firebase & AI script here -->
+
+        <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAvbbdEQ1a0lmq0ZB9whkzZOCcs9nDCgbY",
+            authDomain: "signup-in-authentication.firebaseapp.com",
+            projectId: "signup-in-authentication",
+            storageBucket: "signup-in-authentication.firebasestorage.app",
+            messagingSenderId: "1066345270699",
+            appId: "1:1066345270699:web:8ce90c467feea0650bd6ee"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log(user);
+                show.innerHTML = ''
+                show.innerHTML += `<img src='${user.photoURL}' style="border-radius: 100%"> <br> ${user.displayName} <br> ${user.email}`
+            } else {
+                show.innerHTML = ''
+                show.innerHTML = '<h3>You have to sign in first. Redirecting....</h3>'
+                setTimeout(() => {
+                    window.location.href = 'index.html'
+                }, 2000)
+            }
+        })
+
+        const signUserOut = () => {
+            signOut(auth)
+            .then(() => {
+                console.log('User signed out');
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+        window.signUserOut = signUserOut
+
+
+        // AI
+
+
+        const chatBox = document.getElementById("chatBox");
+        const input = document.getElementById("question");
+
+        const getGeminiResponse = async () => {
+            const userMessage = input.value.trim();
+            if (!userMessage) return;
+
+            addMessage(userMessage, "user-message");
+            input.value = "";
+
+            // Add loading indicator
+            const loadingDiv = document.createElement("div");
+            loadingDiv.className = "loading";
+            loadingDiv.innerHTML = `<img src="https://i.gifer.com/ZZ5H.gif" alt="loading"> Thinking...`;
+            chatBox.appendChild(loadingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            const apiKey = "AIzaSyCatobWn9Aw52ZUmEEyA7vVrxeJg0BMw4I"; // ⚠️ Replace with your Gemini API key
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: userMessage }]
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+                console.log(data);
+
+                // Remove loading spinner
+                chatBox.removeChild(loadingDiv);
+
+                const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ No response from AI.";
+                typeMessage(formatMarkdown(aiResponse), "ai-message");
+
+            } catch (err) {
+                chatBox.removeChild(loadingDiv);
+                addMessage("⚠️ Error: " + err.message, "ai-message");
+                console.error(err);
+            }
+        };
+
+        const addMessage = (text, type, isHTML = false) => {
+            const msgDiv = document.createElement("div");
+            msgDiv.className = `message ${type}`;
+            if (isHTML) {
+                msgDiv.innerHTML = text;
+            } else {
+                msgDiv.textContent = text;
+            }
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        };
+
+        // Typing effect for AI
+        const typeMessage = (html, type) => {
+            const msgDiv = document.createElement("div");
+            msgDiv.className = `message ${type}`;
+            chatBox.appendChild(msgDiv);
+
+            let i = 0;
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = html;
+            const text = tempDiv.innerHTML; // full HTML string
+
+            const interval = setInterval(() => {
+                msgDiv.innerHTML = text.slice(0, i) + (i % 2 ? "|" : ""); // blinking cursor
+                i++;
+                chatBox.scrollTop = chatBox.scrollHeight;
+                if (i > text.length) {
+                    clearInterval(interval);
+                    msgDiv.innerHTML = text; // show full response
+                }
+            }, 15); // typing speed
+        };
+
+        // Markdown parser
+        function formatMarkdown(text) {
+            return text
+                .replace(/```([^`]+)```/g, "<pre>$1</pre>") // code block
+                .replace(/`([^`]+)`/g, "<code>$1</code>") // inline code
+                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // bold
+                .replace(/\*(.*?)\*/g, "<em>$1</em>") // italic
+                .replace(/\n/g, "<br>"); // line breaks
+        }
+
+        input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") getGeminiResponse();
+        });
+    </script>
+</body>
+
+</html>
