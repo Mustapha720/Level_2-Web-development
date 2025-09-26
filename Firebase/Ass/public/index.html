@@ -154,7 +154,7 @@
       </button>
     </div>
 
-    <p>Already have an account? <a href="/public/signin.html">Sign in</a></p>
+    <p>Already have an account? <a href="signin.html">Sign in</a></p>
   </div>
 
 
@@ -194,9 +194,9 @@
               if (user) {
                 // show.innerHTML = ''
                 show.innerHTML = `<img src="https://www.superiorlawncareusa.com/wp-content/uploads/2020/05/loading-gif-png-5.gif" width="100px" style="justify-items: center;" />`
-                window.location.href = '/public/signin.html'
+                window.location.href = 'signin.html'
               } else {
-                window.location.href = '/public/index.html'
+                window.location.href = 'index.html'
               }
             }, 2000)
           })
@@ -221,10 +221,10 @@
           console.log(googleUser);
           setTimeout(() => {
             if (googleUser) {
-              window.location.href = '/public/dashboard.html'
+              window.location.href = 'dashboard.html'
             } else {
               alert('Go and sign up!');
-              window.location.href = '/public/index.html'
+              window.location.href = 'index.html'
             }
           }, 2000)
         })
@@ -242,7 +242,7 @@
           const githubUser = result.user;
           console.log(githubUser);
           setTimeout(() => {
-            googleUser ? window.location.href = '/public/dashboard.html' : window.location.href = '/public/index.html'
+            googleUser ? window.location.href = 'dashboard.html' : window.location.href = 'index.html'
           }, 2000)
         })
         .catch(() => {

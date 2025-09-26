@@ -31,7 +31,7 @@
             </button>
         </div>
 
-        <p>Don't have an account? <a href="/public/index.html">Sign up</a></p>
+        <p>Don't have an account? <a href="index.html">Sign up</a></p>
     </div>
 
 
@@ -68,7 +68,7 @@
                         const user = userCredential.user;
                         console.log(user);
                         setTimeout(() => {
-                            user ? window.location.href = '/public/dashboard.html' : window.location.href = '/public/signin.html'
+                            user ? window.location.href = 'dashboard.html' : window.location.href = 'signin.html'
                         })
                     })
                     .catch((error) => {
@@ -94,10 +94,10 @@
                     console.log(googleUser);
                     setTimeout(() => {
                         if (googleUser) {
-                            window.location.href = '/public/dashboard.html'
+                            window.location.href = 'dashboard.html'
                         } else {
                             alert('Go and sign up!');
-                            window.location.href = '/public/index.html'
+                            window.location.href = 'index.html'
                         }
                     }, 2000)
                 })
@@ -116,10 +116,10 @@
                     console.log(githubUser);
                     setTimeout(() => {
                         if (githubUser) {
-                            window.location.href = '/public/dashboard.html'
+                            window.location.href = 'dashboard.html'
                         } else {
                             alert('Go and sign up!');
-                            window.location.href = '/public/index.html'
+                            window.location.href = 'index.html'
                         }
                     }, 2000)
                 })
