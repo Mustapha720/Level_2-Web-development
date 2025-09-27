@@ -66,7 +66,7 @@
                 signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         const user = userCredential.user;
-                        console.log(user);
+                        // console.log(user);
                         setTimeout(() => {
                             user ? window.location.href = 'dashboard.html' : window.location.href = 'signin.html'
                         })
@@ -91,7 +91,7 @@
             signInWithPopup(auth, provider)
                 .then((result) => {
                     const googleUser = result.user;
-                    console.log(googleUser);
+                    // console.log(googleUser);
                     setTimeout(() => {
                         if (googleUser) {
                             window.location.href = 'dashboard.html'
@@ -113,7 +113,7 @@
             signInWithPopup(auth, githubProvider)
                 .then((result) => {
                     const githubUser = result.user;
-                    console.log(githubUser);
+                    // console.log(githubUser);
                     setTimeout(() => {
                         if (githubUser) {
                             window.location.href = 'dashboard.html'

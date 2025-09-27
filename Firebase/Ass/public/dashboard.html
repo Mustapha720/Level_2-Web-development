@@ -283,7 +283,7 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log(user);
+                // console.log(user);
                 show.innerHTML = ''
                 show.innerHTML += `<img src='${user.photoURL}' style="border-radius: 100%"> <br> ${user.displayName} <br> ${user.email}`
             } else {
@@ -343,7 +343,7 @@
                 });
 
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
 
                 // Remove loading spinner
                 chatBox.removeChild(loadingDiv);
@@ -405,6 +405,11 @@
         input.addEventListener("keypress", (e) => {
             if (e.key === "Enter") getGeminiResponse();
         });
+
+        window.getGeminiResponse = getGeminiResponse
+        window.formatMarkdown = formatMarkdown
+        window.typeMessage = typeMessage
+        window.addMessage = addMessage
     </script>
 </body>
 
