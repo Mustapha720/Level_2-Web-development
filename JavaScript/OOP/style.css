@@ -1,56 +1,95 @@
-.flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
 .GK {
     position: absolute;
-    top: 20%;
-    left: 10%;
+    top: 35%;
+    left: 40%;
 }
 
 .CB1 {
     position: absolute;
+    top: 30%;
+    left: 46%;
 }
 
 .CB2 {
     position: absolute;
+    top: 40%;
+    left: 46%;
 }
 
 .LB {
     position: absolute;
+    top: 15%;
+    left: 50%;
 }
 
 .RB {
     position: absolute;
+    top: 55%;
+    left: 50%;
 }
 
 .DMF {
     position: absolute;
+    top: 35%;
+    left: 53%;
 }
 
 .CMF {
     position: absolute;
+    top: 25%;
+    left: 60%;
 }
 
 .AMF {
     position: absolute;
+    top: 45%;
+    left: 60%;
 }
 
 .LW {
     position: absolute;
+    top: 15%;
+    left: 67%;
 }
 
 .RW {
     position: absolute;
+    top: 55%;
+    left: 67%;
 }
 
-.CF1 {
+.CF {
     position: absolute;
+    top: 35%;
+    left: 70%;
 }
 
 .CF2 {
     position: absolute;
+}
+
+
+.mini-card {
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    height: 60px;
+
+    /* background: gray; */
+    color: #fff;
+    border-radius: 8px;
+}
+
+.mini-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.mini-card img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* makes it circular */
+    object-fit: cover;
 }

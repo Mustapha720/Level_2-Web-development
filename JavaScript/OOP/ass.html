@@ -33,8 +33,7 @@
                                 <option class="AMF" value="AMF">AMF</option>
                                 <option class="LW" value="LW">LW</option>
                                 <option class="RW" value="RW">RW</option>
-                                <option class="CF1" value="CF1">CF1</option>
-                                <option class="CF2" value="CF2">CF2</option>
+                                <option class="CF" value="CF">CF1</option>
                             </select>
                         </div>
                         <div class="d-grid">
@@ -63,17 +62,17 @@
 
             addPlayer () {
                 show.innerHTML += `
-                    <div class='${this.position}'>
+                    <div class='mini-card ${this.position}'>
                         <p>${this.name}</p>
-                        <img src="/person-circle.svg" />
+                        <img src="/person-3.png" />
                     </div>
                 `
             }
         }
 
         const add = () =>{
-            if(!playerName.value){
-                alert("Input player name!!!")
+            if(!playerName.value || selectId.value === ""){
+                alert("Input player name and select a position!!!")
             } else {
                 const jj = new FootballLineup(playerName.value, selectId.value)
                 jj.addPlayer(playerName.value)
