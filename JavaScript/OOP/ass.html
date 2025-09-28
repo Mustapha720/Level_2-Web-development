@@ -23,18 +23,18 @@
                             <label for="selectId" class="form-label fw-semibold">Position</label>
                             <select name="Positions" id="selectId" title="Positions" class="form-select">
                                 <option value="" disabled selected>Select Position</option>
-                                <option class="GK" value="goalKeeper">GK</option>
-                                <option class="CB1" value="centerBack1">CB1</option>
-                                <option class="CB2" value="centerBack2">CB2</option>
-                                <option class="LB" value="leftBack">LB</option>
-                                <option class="RB" value="rightBack">RB</option>
-                                <option class="DMF" value="defensiveMidfielder">DMF</option>
-                                <option class="CMF" value="centerMidfielder">CMF</option>
-                                <option class="AMF" value="attackingMidfielder">AMF</option>
-                                <option class="LW" value="leftWinger">LW</option>
-                                <option class="RW" value="rightWinger">RW</option>
-                                <option class="CF1" value="centerForward1">CF1</option>
-                                <option class="CF2" value="centerForward2">CF2</option>
+                                <option class="GK" value="GK">GK</option>
+                                <option class="CB1" value="CB1">CB1</option>
+                                <option class="CB2" value="CB2">CB2</option>
+                                <option class="LB" value="LB">LB</option>
+                                <option class="RB" value="RB">RB</option>
+                                <option class="DMF" value="DMF">DMF</option>
+                                <option class="CMF" value="CMF">CMF</option>
+                                <option class="AMF" value="AMF">AMF</option>
+                                <option class="LW" value="LW">LW</option>
+                                <option class="RW" value="RW">RW</option>
+                                <option class="CF1" value="CF1">CF1</option>
+                                <option class="CF2" value="CF2">CF2</option>
                             </select>
                         </div>
                         <div class="d-grid">
@@ -61,11 +61,11 @@
                 this.name = name
             }
 
-            addPlayer (name) {
+            addPlayer () {
                 show.innerHTML += `
-                    <div class="try ${this.position}">
-                        ${name}
-                        <img src="/person-circle.svg" alt="">
+                    <div class='${this.position}'>
+                        <p>${this.name}</p>
+                        <img src="/person-circle.svg" />
                     </div>
                 `
             }

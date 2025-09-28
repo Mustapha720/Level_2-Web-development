@@ -1,0 +1,56 @@
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.GK {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
+.CB1 {
+    position: absolute;
+}
+
+.CB2 {
+    position: absolute;
+}
+
+.LB {
+    position: absolute;
+}
+
+.RB {
+    position: absolute;
+}
+
+.DMF {
+    position: absolute;
+}
+
+.CMF {
+    position: absolute;
+}
+
+.AMF {
+    position: absolute;
+}
+
+.LW {
+    position: absolute;
+}
+
+.RW {
+    position: absolute;
+}
+
+.CF1 {
+    position: absolute;
+}
+
+.CF2 {
+    position: absolute;
+}
