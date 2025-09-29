@@ -13,7 +13,7 @@
         <h2>Welcome Back</h2>
         <input type="email" placeholder="name@example.com" id="eMail">
         <input type="password" placeholder="Password" id="passWord">
-        <button onclick="userSignIn()">Sign In</button>
+        <button onclick="userSignIn()" id="but">Sign In</button>
 
         <small>or sign in with</small>
         <div class="social-buttons">
@@ -68,6 +68,7 @@
                         const user = userCredential.user;
                         // console.log(user);
                         setTimeout(() => {
+                            document.getElementById('but').textContent = 'Loading.....'
                             user ? window.location.href = 'dashboard.html' : window.location.href = 'signin.html'
                         })
                     })
@@ -133,7 +134,6 @@
 
         window.signGoogle = signGoogle
         window.signGithub = signGithub
-
         window.userSignIn = userSignIn
     </script>
 </body>

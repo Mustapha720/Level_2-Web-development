@@ -133,7 +133,7 @@
     <input type="text" placeholder="Last Name">
     <input type="email" placeholder="name@example.com" id="eMail">
     <input type="password" placeholder="Password" id="passWord">
-    <button onclick="userSignUp()">Sign Up</button>
+    <button onclick="userSignUp()" id="but">Sign Up</button>
 
     <div class="social-buttons">
       <button type="button" onclick="signGoogle()">
@@ -192,13 +192,12 @@
             // console.log(user);
             setTimeout(() => {
               if (user) {
-                // show.innerHTML = ''
-                show.innerHTML = `<img src="https://www.superiorlawncareusa.com/wp-content/uploads/2020/05/loading-gif-png-5.gif" width="100px" style="justify-items: center;" />`
+                document.getElementById('but').textContent = 'Loading....'
                 window.location.href = 'signin.html'
               } else {
                 window.location.href = 'index.html'
               }
-            }, 2000)
+            }, 1000)
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -207,7 +206,10 @@
             console.log(errorMessage);
             if (errorCode === 'auth/password-does-not-meet-requirements') {
               alert('Password must be at least 8 characters and include uppercase, lowercase, number, and special character.')
-            } else {
+            } else if(errorCode === 'auth/email-already-in-use') {
+              alert("Email already in use!!")
+              eMail.value = ''
+            }else {
               console.log('Successful');
             }
           })
