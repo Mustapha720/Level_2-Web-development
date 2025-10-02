@@ -18,12 +18,13 @@
     <input type="text" placeholder="Description" id="description">
     <input type="text" placeholder="User" id="user">
     <button onclick="submit()">Submit</button>
+    <div id="show2"></div>
 
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -40,6 +41,8 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
+
+        let databaseList = 0
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -83,7 +86,7 @@
     
                 // console.log(obj);
 
-                const objRef = ref(database, 'transactions/' + user1);
+                const objRef = ref(database, `transactions/${databaseList}`);
                 set(objRef, obj);
 
                 amount.value = '';
@@ -91,6 +94,24 @@
                 user.value = '';
             }
         }
+
+        const newRef = ref(database, 'transactions')
+        onValue(newRef, (snapshot) => {
+            const data = snapshot.val();
+            console.log(data);
+            if (data) {
+                databaseList = data.length;
+            } else {
+                databaseList = 0;
+            }
+
+            document.getElementById('show2').innerHTML = ''
+            data.map((info, index) => {
+                document.getElementById('show2').innerHTML += `
+                    <p>${index + 1}. ${info.User}, ${info.Amount}</p>
+                `
+            })
+        })
 
         window.submit = submit
         window.signUserOut = signUserOut
